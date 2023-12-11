@@ -1,0 +1,4 @@
+LAS SUBCONSULTAS -----> son consultas adentro de una consulta.
+Solo nos permite recuperar datos. No alteran la base de datos.
+
+Una subconsulta solo retorna columas, asi que solo se debe de indicar que un campo en la subconsulta. Si se necesiita mas campos, se debera hacer mas subconsultas para poder obtener esos campos 

@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?><sqlb_project><db path="C:/cursoSQL/Northwind.db" readonly="0" foreign_keys="1" case_sensitive_like="0" temp_store="0" wal_autocheckpoint="1000" synchronous="2"/><attached/><window><main_tabs open="structure browser pragmas query" current="3"/></window><tab_structure><column_width id="0" width="300"/><column_width id="1" width="0"/><column_width id="2" width="100"/><column_width id="3" width="2098"/><column_width id="4" width="0"/><expanded_item id="0" parent="1"/><expanded_item id="1" parent="1"/><expanded_item id="2" parent="1"/><expanded_item id="3" parent="1"/></tab_structure><tab_browse><current_table name="4,10:mainCategories"/><default_encoding codec=""/><browse_table_settings/></tab_browse><tab_sql><sql name="SQL 1">SELECT * FROM OrderDetails; 
+
+SELECT * FROM Products; 
+
+SELECT * FROM Orders; 
+
+SELECT ProductID, Quantity,
+		(SELECT ProductName FROM Products WHERE OrderDetails.ProductID = ProductID)AS Nombre 
+FROM OrderDetails;</sql><sql name="SQL 2">SELECT ProductID, sum(Quantity) AS Total_vendido,
+		(SELECT Price FROM Products WHERE ProductID = OD.ProductID) AS Price,
+		(SELECT ProductName FROM Products WHERE ProductID = OD.ProductID) AS name,
+		(round(sum(Quantity)* (SELECT Price FROM Products WHERE ProductID = OD.ProductID))) AS Total_recaudado	
+FROM [OrderDetails] OD
+GROUP BY ProductID
+ORDER BY Total_vendido DESC ;</sql><sql name="SQL 3">SELECT FirstName, LastName, 
+(SELECT sum(Quantity) FROM [Orders] o, [OrderDetails] od 
+WHERE o.EmployeeID = e.EmployeeID AND od.OrderID = o.OrderID) as Unidades_totales
+FROM [Employees] e
+WHERE Unidades_totales &gt; ( SELECT AVG(unidades_totales) FROM (
+SELECT (SELECT sum(Quantity) FROM [Orders] o, [OrderDetails] od 
+WHERE o.EmployeeID = e2.EmployeeID AND od.OrderID = o.OrderID ) as unidades_totales FROM [Employees] e2
+GROUP BY e2.EmployeeID
+))</sql><current_tab id="2"/></tab_sql></sqlb_project>

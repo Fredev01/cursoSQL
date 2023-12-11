@@ -1,0 +1,29 @@
+HAVING ----> permite operar con el resultado de los grupos.
+permite evaluar y trabajar con todos los operadores que se utilizan en WHERE.
+
+
+SELECT SupplierID, ROUND(AVG(price)) as Promedio FROM Products 
+ GROUP BY SupplierID
+ HAVING Promedio > 40;
+
+
+GROUP BY ---> se utiliza para ordenar grupos ( Agrupar registros)
+
+WHERE ---> Filtra registros  
+
+
+ORDER BY-----> permite realizar el ordenamiento 
+
+LIMIT -----> Permite establecer limitaciones 
+
+	-------------- ESTRUCTURA---------------------
+SELECT..
+WHERE...
+GROUP BY... 
+HAVING...
+ORDER BY...
+LIMIT...
+
+
+NOTA----
+NO SE PUEDE AGRERAR EL RESULTADO DE UNA FUNCION DE AFGRUPACION COMO ARGUMENTO DE OTRA FUNCION DE AGREGACION, (SOLO SE PUEDE HACER EN SUBCONSULTAS)
